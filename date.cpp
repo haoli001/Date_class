@@ -103,4 +103,22 @@ Date operator --(Date &a){
 	a.r_set();
 	return a;
 }
-Date operator >
+bool operator ==(const Date a,const Date b){
+	return a.ToInt()==b.ToInt();
+}
+bool operator !=(const Date a,const Date b){
+	return !(a==b);
+}
+bool operator >(const Date a,const Date b){
+	return a.ToInt()>b.ToInt();
+}
+bool operator >=(const Date a,const Date b){
+	return a>b||a==b;
+}
+bool operator <(const Date a,const Date b){
+	return !(a>=b);
+}
+bool operator <=(const Date a,const Date b){
+	return a<b||a==b;
+}
+

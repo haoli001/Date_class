@@ -48,12 +48,12 @@ class Date{
 		friend Date operator - (const Date a,const int v);
 		friend int  operator - (const Date a,const Date b);
 		friend Date operator --(const Date &a);
-		friend Date operator > (const Date a,const Date b);
-		friend Date operator >=(const Date a,const Date b);
-		friend Date operator < (const Date a,const Date b);
-		friend Date operator <=(const Date a,const Date b);
-		friend Date operator ==(const Date a,const Date b);
-		friend Date operator !=(const Date a,const Date b);
+		friend bool operator > (const Date a,const Date b);
+		friend bool operator >=(const Date a,const Date b);
+		friend bool operator < (const Date a,const Date b);
+		friend bool operator <=(const Date a,const Date b);
+		friend bool operator ==(const Date a,const Date b);
+		friend bool operator !=(const Date a,const Date b);
 		//friend std::odtream & operator <<(std::ostream &os,const Date &a);
 		//friend std::istream & operator >>(std::istream &is,const Date &a);
 	private:
