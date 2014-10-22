@@ -31,30 +31,30 @@ int Date::DayforMonth(int y,int m)const{
 int Date::ToInt()const{
 	int sum=0;
 	for(int i=1;i<y;i++){
-		sum+=365+is_p_year(i);
+		sum+=365+this->is_p_year(i);
 	}
 	for(int i=1;i<m;i++){
-		sum+=DayforMonth(y,m);
+		sum+=this->DayforMonth(y,m);
 	}
 	sum+=d;
 	return sum;
 }
 void Date::r_set(){
-	while(*this->d>*this->DayforMonth(*this->y,*this->m)){//大于
-		*this->d-=*this->DayforMonth(*this->y,*thi->.m);
-		*this->m++;
-		if(*this->m>12){
-			++(*this->y);
-			*this->m=1;
+	while(this->d>this->DayforMonth(this->y,this->m)){//大于
+		this->d-=this->DayforMonth(this->y,this->.m);
+		this->m++;
+		if(this->m>12){
+			++(this->y);
+			this->m=1;
 		}
 	}
-	while(*this->d<1){
-		*this->m--;
-		if(*this->m<1){
-			*this->y--;
-			*this->m=12;
+	while(this->d<1){
+		this->m--;
+		if(this->m<1){
+			this->y--;
+			this->m=12;
 		}
-		*this->d+=*this->DayforMonth(*this->y,*this->m);
+		this->d+=this->DayforMonth(this->y,this->m);
 	}
 }
 ////////////日期加天数
@@ -71,14 +71,15 @@ Date operator + (const int v,const Date a){
 Date operator +(const Date a,const int v){
 	return v+a;
 }
-Date Date::operator +=(const int c){
+Date Date::operator +=(const int v){
 	if(v==0)return *this;
+	Date a=*this;
 	if(v>0){
-		a.day++;
+		a.d++;
 		a.r_set();
 		return a;
 	}
-	else return a-=(-v);
+	else return a-v;
 }
 Date operator ++(Date &a){
 	a.d++;
@@ -93,13 +94,13 @@ Date operator -(const Date a,const int v){
 		b.r_set();
 		return b;
 	}
-	else return d+(-v);
+	else return b+(-v);
 }
 int operator-(const Date a,const Date b){
 	return a.ToInt()-b.ToInt();
 }
 Date operator --(Date &a){
-	--a.d;
+	a.d--;
 	a.r_set();
 	return a;
 }

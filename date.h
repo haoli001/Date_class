@@ -24,7 +24,7 @@ class Date{
 			return y%400?(y%100?(y%4?0:1):0):1;
 		}
 		bool is_p_year(const int yy){
-			return yy%400?(y%100?(y%4?0:1):0):1;
+			return yy%400?(yy%100?(yy%4?0:1):0):1;
 		}
 		void show(){
 			std::cout<<y<<'-'<<m<<'-'<<d<<std::endl;
@@ -47,7 +47,7 @@ class Date{
 		friend Date operator ++(Date &a);
 		friend Date operator - (const Date a,const int v);
 		friend int  operator - (const Date a,const Date b);
-		friend Date operator --(const Date &a);
+		friend Date operator --(Date &a);
 		friend bool operator > (const Date a,const Date b);
 		friend bool operator >=(const Date a,const Date b);
 		friend bool operator < (const Date a,const Date b);
