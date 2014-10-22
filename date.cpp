@@ -1,12 +1,12 @@
 /***
   日期类
  ***/
-
+#include <iostream>
 #include "date.h"
 // 得到每个月的天数
-int Date::DayforMonth(int y,int m){
+int Date::DayforMonth(int y,int m)const{
 	int d=0;
-	switch(){
+	switch(m){
 		case 1:
 		case 3:
 		case 5:
@@ -14,7 +14,7 @@ int Date::DayforMonth(int y,int m){
 		case 8:
 		case 10:
 		case 12:
-			d=13;
+			d=31;
 			break;
 		case 4:
 		case 6:
@@ -40,21 +40,21 @@ int Date::ToInt()const{
 	return sum;
 }
 void Date::r_set(){
-	while(*this.d>*this.DayforMonth(*this.y,*this.m)){//大于
-		*this.d-=*this.DayforMonth(*this.y,*this.m);
-		*this.m++;
-		if(*this.m>12){
-			++(*this.y);
-			*this.m=1;
+	while(*this->d>*this->DayforMonth(*this->y,*this->m)){//大于
+		*this->d-=*this->DayforMonth(*this->y,*thi->.m);
+		*this->m++;
+		if(*this->m>12){
+			++(*this->y);
+			*this->m=1;
 		}
 	}
-	while(*this.d<1){
-		*this.m--;
-		if(*this.m<1){
-			*this.y--;
-			*this.m=12;
+	while(*this->d<1){
+		*this->m--;
+		if(*this->m<1){
+			*this->y--;
+			*this->m=12;
 		}
-		*this.d+=*this.DayforMonth(*this.y,*this.m);
+		*this->d+=*this->DayforMonth(*this->y,*this->m);
 	}
 }
 ////////////日期加天数
@@ -121,4 +121,7 @@ bool operator <(const Date a,const Date b){
 bool operator <=(const Date a,const Date b){
 	return a<b||a==b;
 }
+int main(){
+	Date a,b;
 
+}

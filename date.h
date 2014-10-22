@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#ifndef
+#ifndef _DATE_
 #define _DATE_
 #endif
 class Date{
@@ -58,7 +58,7 @@ class Date{
 		//friend std::istream & operator >>(std::istream &is,const Date &a);
 	private:
 		int y,m,d;
-		 int DayforMonth(int y,int m)const;
-		 int ToInt()const;
-		 void r_set();
+		int DayforMonth(int y,int m)const;
+		int ToInt()const;
+		void r_set();
 };
