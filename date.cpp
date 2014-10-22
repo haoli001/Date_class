@@ -31,17 +31,17 @@ int Date::DayforMonth(int y,int m)const{
 int Date::ToInt()const{
 	int sum=0;
 	for(int i=1;i<y;i++){
-		sum+=365+this->is_p_year(i);
+		sum+=365+is_p_year(i);
 	}
 	for(int i=1;i<m;i++){
-		sum+=this->DayforMonth(y,m);
+		sum+=DayforMonth(y,m);
 	}
 	sum+=d;
 	return sum;
 }
 void Date::r_set(){
 	while(this->d>this->DayforMonth(this->y,this->m)){//大于
-		this->d-=this->DayforMonth(this->y,this->.m);
+		this->d-=this->DayforMonth(this->y,this->m);
 		this->m++;
 		if(this->m>12){
 			++(this->y);
@@ -121,8 +121,4 @@ bool operator <(const Date a,const Date b){
 }
 bool operator <=(const Date a,const Date b){
 	return a<b||a==b;
-}
-int main(){
-	Date a,b;
-
 }

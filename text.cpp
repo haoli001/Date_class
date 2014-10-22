@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Date.h"
+#include "date.h"
 using namespace std;
 int main(){
 	Date a(2000,8,14),b;

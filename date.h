@@ -23,7 +23,7 @@ class Date{
 		bool is_p_year()const{
 			return y%400?(y%100?(y%4?0:1):0):1;
 		}
-		bool is_p_year(const int yy){
+		bool is_p_year(const int yy)const{
 			return yy%400?(yy%100?(yy%4?0:1):0):1;
 		}
 		void show(){
