@@ -13,7 +13,17 @@ int main(){
 	a.set_d(40);
 	a.show();
 	b.set_d(-1);
+	a.show();
+	a+=1;
+	a.show();
+	b=a-1;
 	b.show();
+	a+=(-1);
+	a.show();
+	++a;
+	a.show();
+	cout<<a-b<<endl;
+
 
 	c[0].show();
 	c[0].set_y(2003);
