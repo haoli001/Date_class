@@ -34,27 +34,27 @@ int Date::ToInt()const{
 		sum+=365+is_p_year(i);
 	}
 	for(int i=1;i<m;i++){
-		sum+=this->DayforMonth(y,m);
+		sum+=DayforMonth(y,m);
 	}
 	sum+=d;
 	return sum;
 }
 void Date::r_set(){
-	while(d>this->DayforMonth(y,m)){//大于
-		d-=this->DayforMonth(y,m);
-		m++;
-		if(m>12){
-			++(y);
-			m=1;
+	while(this->d>this->DayforMonth(this->y,this->m)){//大于
+		this->d-=this->DayforMonth(this->y,this->m);
+		this->m++;
+		if(this->m>12){
+			++(this->y);
+			this->m=1;
 		}
 	}
-	while(d<1){
-		  m--;
-		if(m<1){
-			y--;
-			m=12;
+	while(this->d<1){
+		this->m--;
+		if(this->m<1){
+			this->y--;
+			this->m=12;
 		}
-		d+=this->DayforMonth(y,m);
+		this->d+=this->DayforMonth(this->y,this->m);
 	}
 }
 ////////////日期加天数
