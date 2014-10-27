@@ -7,7 +7,9 @@ class Date{
 	public:
 		Date(int y=1990,int m=1,int d=1)
 		:y(y),m(m),d(d){
-			this->set(y,m,d);
+			if(y<=0)y=1990;
+			if(m<=0||m>12)m=1;
+			if(d<=0||d>DayforMonth(y,m))d=1;
 		}
 		int get_year(){
 			return y;
@@ -28,21 +30,16 @@ class Date{
 			std::cout<<y<<'-'<<m<<'-'<<d<<std::endl;
 		}
 		void set(int yy,int mm,int dd){
-			if(yy<=0)yy=1990;
-			else y=yy;
-			if(mm<=0||mm>12)m=1;
-			else m=mm;
-			if(dd<=0||dd>DayforMonth(yy,mm))dd=1;	
-			else d=dd;
+			y=yy;m=mm;d=dd;
 		}
 		void set_y(int yy){
-			this->set(yy,m,d);
+			y=yy;
 		}
 		void set_m(int mm){
-			this->set(y,mm,d);
+			m=mm;
 		}
 		void set_d(int dd){
-			this->set(y,m,dd);
+			d=dd;
 		}
 		Date operator += (const int c);
 		friend Date operator + (const int v,const Date a);
