@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <string>
 #ifndef _DATE_
 #define _DATE_
 #endif
@@ -7,17 +8,31 @@ class Date{
 	public:
 		Date(int y,int m,int d)
 		:y(y),m(m),d(d){
-			this->set(y,m,d);
+			set(y,m,d);
 		}
-        Date(const int yyy=1990){
+        Date(const int yyy=19900101){
             int yy=yyy;
             y=yy/10000;
             yy%=10000;
             m=yy/100;
             d=yy%100;
         }
-        Date(const string h){
-            
+        Date(const std::string h){
+            int i=0;
+            int tmp=0;
+            for(int i=0;i<h.length();i++){
+                while(h[i]>='0'&&h[i]<='9'&&i<h.length()){
+                    tmp+=h[i]-'0';
+                    tmp*=10;
+                    i++;
+                }
+            }
+            tmp/=10;
+            int yy=tmp;
+            int y1=yy/10000;yy%=10000;
+            int m1=yy/100;
+            int d1=yy%100;
+            set(y1,m1,d1);
         }
 		int get_year(){
 			return y;
@@ -34,26 +49,26 @@ class Date{
 		bool is_p_year(const int yy)const{
 			return yy%400?(yy%100?(yy%4?0:1):0):1;
 		}
-		void show(){
-			std::cout<<y<<'-'<<m<<'-'<<d<<std::endl;
-		}
 		void set(int yy,int mm,int dd){
 			if(yy<=0)yy=1990;
 			else y=yy;
 			if(mm<=0||mm>12)m=1;
 			else m=mm;
-			if(dd<=0||dd>DayforMonth(yy,mm))dd=1;	
+			if(dd<=0||dd>DayforMonth(y,m))d=1;
 			else d=dd;
 		}
 		void set_y(int yy){
-			this->set(yy,m,d);
+			set(yy,m,d);
 		}
 		void set_m(int mm){
-			this->set(y,mm,d);
+			set(y,mm,d);
 		}
 		void set_d(int dd){
-			this->set(y,m,dd);
+			set(y,m,dd);
 		}
+        void clear(){
+            
+        }
 		Date operator += (const int c);
 		friend Date operator + (const int v,const Date a);
 		friend Date operator + (const Date a,const int v);
@@ -66,9 +81,9 @@ class Date{
 		friend bool operator < (const Date a,const Date b);
 		friend bool operator <=(const Date a,const Date b);
 		friend bool operator ==(const Date a,const Date b);
-		friend bool operator !=(const Date a,const Date b);
-		//friend std::odtream & operator <<(std::ostream &os,const Date &a);
-		//friend std::istream & operator >>(std::istream &is,const Date &a);
+        friend bool operator !=(const Date a,const Date b);
+        friend std::ostream & operator <<(std::ostream &os,const Date &a);
+		friend std::istream & operator >>(std::istream &is,Date &a);
 	private:
 		int y,m,d;
 		int DayforMonth(int y,int m)const;
