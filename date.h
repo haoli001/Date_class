@@ -5,10 +5,20 @@
 #endif
 class Date{
 	public:
-		Date(int y=1990,int m=1,int d=1)
+		Date(int y,int m,int d)
 		:y(y),m(m),d(d){
 			this->set(y,m,d);
 		}
+        Date(const int yyy=1990){
+            int yy=yyy;
+            y=yy/10000;
+            yy%=10000;
+            m=yy/100;
+            d=yy%100;
+        }
+        Date(const string h){
+            
+        }
 		int get_year(){
 			return y;
 		}

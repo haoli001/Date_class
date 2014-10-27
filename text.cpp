@@ -2,9 +2,8 @@
 #include "date.h"
 using namespace std;
 int main(){
-	Date a(2000,8,14),b;
+	Date a(19990909),b(19980102);
 	Date c[100];
-	b.set(2012,2,29);
 	a.show();
 	b.show();
 	cout<<a.get_year()<<endl;
