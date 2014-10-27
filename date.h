@@ -9,7 +9,6 @@ class Date{
 		:y(y),m(m),d(d){
 			this->set(y,m,d);
 		}
-    
 		int get_year(){
 			return y;
 		}
