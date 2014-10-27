@@ -7,8 +7,20 @@ class Date{
 	public:
 		Date(int y=1990,int m=1,int d=1)
 		:y(y),m(m),d(d){
-			this->set(y,m,d);
+			set(y,m,d);
 		}
+        Date(string h){
+            int i=h.length()-1;
+            int d=h[i-1]*10+h[i];
+            i-=2;
+            int m=h[i-1]*10+h[i];
+            i-=2;
+            int y=0;
+            for(int j=0;i<i;j++){
+                y+=h[j];
+                y*=10;
+            }
+        }
 		int get_year(){
 			return y;
 		}
@@ -24,7 +36,7 @@ class Date{
 		bool is_p_year(const int yy)const{
 			return yy%400?(yy%100?(yy%4?0:1):0):1;
 		}
-		void show(){
+		void show(){//重载
 			std::cout<<y<<'-'<<m<<'-'<<d<<std::endl;
 		}
 		void set(int yy,int mm,int dd){
@@ -36,13 +48,13 @@ class Date{
 			else d=dd;
 		}
 		void set_y(int yy){
-			this->set(yy,m,d);
+			set(yy,m,d);
 		}
 		void set_m(int mm){
-			this->set(y,mm,d);
+			set(y,mm,d);
 		}
 		void set_d(int dd){
-			this->set(y,m,dd);
+			set(y,m,dd);
 		}
 		Date operator += (const int c);
 		friend Date operator + (const int v,const Date a);
