@@ -5,21 +5,16 @@
 #endif
 class Date{
 	public:
-		Date(int y=1990,int m=1,int d=1)
+		Date(const int y,const int m,const int d)
 		:y(y),m(m),d(d){
 			set(y,m,d);
 		}
-        Date(string h){
-            int i=h.length()-1;
-            int d=h[i-1]*10+h[i];
-            i-=2;
-            int m=h[i-1]*10+h[i];
-            i-=2;
-            int y=0;
-            for(int j=0;i<i;j++){
-                y+=h[j];
-                y*=10;
-            }
+        Date(const int yyy=1990){
+            int yy=yyy;
+            y=yy/10000;
+            yy%=10000;
+            m=yy/100;
+            d=yy%100;
         }
 		int get_year(){
 			return y;
@@ -44,7 +39,7 @@ class Date{
 			else y=yy;
 			if(mm<=0||mm>12)m=1;
 			else m=mm;
-			if(dd<=0||dd>DayforMonth(yy,mm))dd=1;	
+			if(dd<=0||dd>this->DayforMonth(yy,mm))dd=1;
 			else d=dd;
 		}
 		void set_y(int yy){
