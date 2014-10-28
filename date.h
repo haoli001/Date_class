@@ -1,16 +1,23 @@
 #pragma once
+#ifndef _LIBCPP_IOSTREAM
 #include <iostream>
-#include <string>
-#ifndef _DATE_
-#define _DATE_
 #endif
+#ifndef _LIBCPP_STRING
+#include <string>
+#endif
+#ifndef _TIME_H_
+#include <time.h>
+#endif
+#ifndef _DATE_H_
+#define _DATE_H_
+
 class Date{
 	public:
 		Date(int y,int m,int d)
 		:y(y),m(m),d(d){
 			set(y,m,d);
 		}
-        Date(const int yyy=19900101){
+        explicit Date(const int yyy=19900101){
             int yy=yyy;
             y=yy/10000;
             yy%=10000;
@@ -33,6 +40,15 @@ class Date{
             int m1=yy/100;
             int d1=yy%100;
             set(y1,m1,d1);
+        }
+        int y_day(){
+            Date a=*this;
+            a.set_m(1);
+            a.set_d(1);
+            return *this-a+1;
+        }
+        int ny_day(){
+            return 365+is_p_year()-y_day();
         }
 		int get_year(){
 			return y;
@@ -66,16 +82,21 @@ class Date{
 		void set_d(int dd){
 			set(y,m,dd);
 		}
-        void clear(){
-            
+        void set_now(){
+            time_t curtime=time(0);
+            tm tim =*localtime(&curtime);
+            set(tim.tm_year+1900,tim.tm_mon+1,tim.tm_mday);
         }
-		Date operator += (const int c);
+		Date& operator += (const int c);
+        Date& operator -= (const int c);
 		friend Date operator + (const int v,const Date a);
 		friend Date operator + (const Date a,const int v);
-		friend Date operator ++(Date &a);
+        Date operator ++(int);
+        Date& operator ++();
 		friend Date operator - (const Date a,const int v);
 		friend int  operator - (const Date a,const Date b);
-		friend Date operator --(Date &a);
+        Date operator --(int);
+        Date& operator --();
 		friend bool operator > (const Date a,const Date b);
 		friend bool operator >=(const Date a,const Date b);
 		friend bool operator < (const Date a,const Date b);
@@ -87,6 +108,7 @@ class Date{
 	private:
 		int y,m,d;
 		int DayforMonth(int y,int m)const;
-		int ToInt()const;
+		int ToInt(int yy,int mm)const;
 		void r_set();
 };
+#endif

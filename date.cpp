@@ -28,12 +28,12 @@ int Date::DayforMonth(int y,int m)const{
 	}
 	return d;
 }
-int Date::ToInt()const{
+int Date::ToInt(int yy=1,int mm=1)const{
 	int sum=0;
-	for(int i=1;i<y;i++){
+	for(int i=yy;i<y;i++){
 		sum+=365+is_p_year(i);
 	}
-	for(int i=1;i<m;i++){
+	for(int i=mm;i<m;i++){
 		sum+=DayforMonth(y,m);
 	}
 	sum+=d;
@@ -71,20 +71,34 @@ Date operator + (const int v,const Date a){
 Date operator +(const Date a,const int v){
 	return v+a;
 }
-Date Date::operator +=(const int v){
+Date& Date::operator +=(const int v){
 	if(v==0)return *this;
-	Date a=*this;
 	if(v>0){
-		a.d++;
-		a.r_set();
-		return a;
+		d+=v;
+		this->r_set();
+		return *this;
 	}
-	else return a-v;
+	else return *this-=(-v);
 }
-Date operator ++(Date &a){
-	a.d++;
-	a.r_set();
-	return a;
+Date& Date::operator -=(const int v){
+    if(v==0)return *this;
+    if(v>0){
+        d-=v;
+        this->r_set();
+        return *this;
+    }
+    else return *this+=(-v);
+}
+Date& Date::operator ++(){
+	d++;
+	this->r_set();
+	return *this;
+}
+Date  Date::operator ++(int){
+    Date b=*this;
+    d++;
+    this->r_set();
+    return b;
 }
 Date operator -(const Date a,const int v){
 	Date b=a;
@@ -99,10 +113,16 @@ Date operator -(const Date a,const int v){
 int operator-(const Date a,const Date b){
 	return a.ToInt()-b.ToInt();
 }
-Date operator --(Date &a){
-	a.d--;
-	a.r_set();
-	return a;
+Date& Date::operator --(){
+	d--;
+	this->r_set();
+	return *this;
+}
+Date  Date::operator --(int){
+    Date b=*this;
+    d--;
+    this->r_set();
+    return b;
 }
 bool operator ==(const Date a,const Date b){
 	return a.ToInt()==b.ToInt();

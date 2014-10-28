@@ -2,11 +2,11 @@
 #include "date.h"
 using namespace std;
 int main(){
-	Date a("19980909"),b(20001010);
+	Date a("20080229"),b(20001010);
 	Date c[100];
-	cin>>a;
 	cout<<a<<endl;
-	return 0;
-	
+	cout<<a.y_day()<<endl;
+	cout<<a.ny_day()<<endl;
 
+	return 0;
 }
