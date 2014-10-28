@@ -25,7 +25,6 @@ class Date{
             d=yy%100;
         }
         Date(const std::string h){
-            int i=0;
             int tmp=0;
             for(int i=0;i<h.length();i++){
                 while(h[i]>='0'&&h[i]<='9'&&i<h.length()){
@@ -41,25 +40,25 @@ class Date{
             int d1=yy%100;
             set(y1,m1,d1);
         }
-        int y_day(){
+        int y_day()const{
             Date a=*this;
             a.set_m(1);
             a.set_d(1);
             return *this-a+1;
         }
-        int ny_day(){
+        int ny_day()const{
             return 365+is_p_year()-y_day();
         }
-		int get_year(){
+		int get_year()const{
 			return y;
 		}
-		int get_month(){
+		int get_month()const{
 			return m;
 		}
-		int get_day(){
+		int get_day()const{
 			return d;
 		}
-        int week_num(){
+        int week_num()const{//求星期几
             int yy=y,mm=m;
             if(mm==1||mm==2)mm+=12;
             int c=yy/100;
