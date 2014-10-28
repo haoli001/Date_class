@@ -143,7 +143,7 @@ bool operator <=(const Date a,const Date b){
 	return a<b||a==b;
 }
 std::ostream& operator <<(std::ostream &os,const Date &a){
-    os<<a.y<<'-'<<a.m<<'-'<<a.d<<std::endl;
+    os<<a.y<<'-'<<a.m<<'-'<<a.d;
     return os;
 }
 std::istream& operator >>(std::istream &in,Date &a){

@@ -59,6 +59,13 @@ class Date{
 		int get_day(){
 			return d;
 		}
+        int week_num(){
+            int yy=y,mm=m;
+            if(mm==1||mm==2)mm+=12;
+            int c=yy/100;
+            yy%=100;
+            return (yy+yy/4+c/4-2*c+26*(mm+1)/10+d-1)%7;
+        }
 		bool is_p_year()const{
 			return y%400?(y%100?(y%4?0:1):0):1;
 		}
